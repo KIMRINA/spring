@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!--<bean name="tv" class="com.yedam.app.ioc.LgTV" />-->
+	<!-- context:component-scan은 자동으로 검색해서 객체를 등록하라는 태그. com.yedam.app 다 스캔 스캔할 클래스에 @Component() 등록-->
+	<context:component-scan base-package="com.yedam.app" />  
+</beans>

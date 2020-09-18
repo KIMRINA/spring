@@ -1,0 +1,12 @@
+IoC : 객체 관리를 컨테이너가 대신 함
+DI : 의존 객체를 주입
+     dependency Injection
+POJO : 상속받지 않은 기본 클래스(상속할 필요 없음)
+
+http://localhost/app/memberInsert?id=chichi&pw=1111
+
+IoC
+컨테이너 생성해서 빈 관리해주는거
+컨테이너에 모든 빈 담는다
+그리고 나서 Autowired 으로 해당 빈 객체 쓰게해줌
+등록하는거는 Component 불러쓰는거는 Autowireds
