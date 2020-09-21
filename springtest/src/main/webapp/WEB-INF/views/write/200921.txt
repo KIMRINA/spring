@@ -1,0 +1,43 @@
+junit은 메소드단위로 수정,삭제 test 하는것
+DAO가 하는 일을 junit을 가지고 test 한다
+
+생성자를 대신해주는게 builder
+
+@Resource =  @Autowired, @Qualifier 합친거
+
+<bean lazy-init="default" 컨테이너를 구성할때 등록할때 모든 빈을 생성해서 메모리 로딩함
+최초 요청이 들어오면 만들어줌
+
+<bean scope="" 
+singleton(기본)
+객체를 한번 생성해서 컨테이너 담아놓고 갖고와서 쓰는것(같은객체)
+
+prototype
+요청할때마다 객체가 생성(다른객체)
+
+
+-----------교수님의 정리--------------
+pom.xml : spring 5.2.8 버전 변경
+		  junit 4.12 버전 변경
+		  spring-test dependency 추가
+프로젝트에 build path에 junit4 라이브러리 추가
+
+1. IoC (컨테이너가 관리하도록 빈 등록)
+	1) <bean>태그를 이용
+		<bean name="" class="" scope="" />
+		scope : singletone, <- 객체 공유
+		  		prototype, <- 객체 생성
+		  		session
+	2) component-scan
+	@Component 어노테이션		(@Controller, @Service, @Repository)
+	
+2. DI (주입)
+	1) <bean>태그를 이용
+		<bean name="tv" class="" scope="">
+			<property name="멤버필드명" ref="등록된 빈의 name">
+		</bean>
+	2) 어노테이션
+		class LgTV {
+			@Autowired @Qualified("name") Speaker speaker;
+			@Resource(name="name")		// 위에 두개 합친거
+			

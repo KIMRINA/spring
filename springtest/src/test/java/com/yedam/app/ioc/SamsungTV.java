@@ -1,12 +1,16 @@
 package com.yedam.app.ioc;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-//@Component("tv")
+//@Component
 public class SamsungTV implements TV {
 
-	//@Autowired		// 주입 factory.getBean("speaker")
+	// @Resource =  @Autowired, @Qualifier 합친거
+	//@Resource(name = "appleSpeaker")		// 주입 factory.getBean("speaker")  
 	private Speaker speaker;	
 	private int price;
 	

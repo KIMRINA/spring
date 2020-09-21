@@ -9,12 +9,16 @@ public class TvUserContainer {
 
 		AbstractApplicationContext  factory =
 				new GenericXmlApplicationContext("applicationContext.xml");	// GenericXmlApplicationContext는 bean factory 역할을 하는 객체
-		TV tv = (TV)factory.getBean("tv");
+		/* TV tv = (TV)factory.getBean("tv");
 		
 		tv.powerOn();
 		tv.volumeUp();
 		tv.volumeDown();
-		tv.powerOff();
+		tv.powerOff(); */
+		
+		Speaker speaker1 = (Speaker)factory.getBean("sony");
+		Speaker speaker2 = (Speaker)factory.getBean("sony");
+		System.out.println(speaker1 == speaker2 ? "yes" : "no");	// scope= prototype 1,2는 서로 다른 객체 / singleton는 같은객체
 
 	}
 }

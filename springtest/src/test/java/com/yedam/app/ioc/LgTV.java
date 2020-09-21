@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component("tv")
+//@Component("tv")
 public class LgTV implements TV {
 	
-	@Autowired   //클래스타입
+	//@Autowired   //클래스타입
 	//@Qualifier("apple")  //id 값으로 검색
 	//@Resource(name="apple")
 	Speaker speaker;	 

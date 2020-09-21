@@ -2,10 +2,37 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<!--<bean name="tv" class="com.yedam.app.ioc.LgTV" />-->
 	<!-- context:component-scan은 자동으로 검색해서 객체를 등록하라는 태그. com.yedam.app 다 스캔 스캔할 클래스에 @Component() 등록-->
-	<context:component-scan base-package="com.yedam.app" />  
+	<context:component-scan base-package="com.yedam.app" /> 
+	<bean name="sony" class="com.yedam.app.ioc.SonySpeaker" scope="singleton" /> 
+	<!-- <bean name="sony" class="com.yedam.app.ioc.SonySpeaker" /> 
+	<bean name="apple" class="com.yedam.app.ioc.AppleSpeaker" /> 
+	<bean name="tv" class="com.yedam.app.ioc.SamsungTV" /> 
+	<bean name="tv" class="com.yedam.app.ioc.LgTV" > 
+		<property name="speaker" ref="apple" ></property>
+	</bean> -->
+
+
+<aop:aspectj-autoproxy proxy-target-class="true"/> 
+
+<bean id="logAdvice" class="com.yedam.app.aop.LogAdvice"></bean>
+<bean id="afterAdvice" class="com.yedam.app.aop.AfterReturningAdvice"></bean>
+
+<aop:config>
+	<aop:pointcut expression="execution(* com.yedam.app..*.*(..))" id="allpointcut"/>  <!--  (* com.yedam.app..*.select*(..)) 메소드명은 클래스명 뒤에 적기 -->
+	<aop:pointcut expression="execution(* com.yedam.app..*.select*(..))" id="selectpointcut"/>	<!-- select로 시작하는것을 pointcut으로 만듬 -->
+	<aop:aspect ref="logAdvice">
+		<aop:before method="printLog" pointcut-ref="allpointcut"/>
+	</aop:aspect>
+	<aop:aspect ref="afterAdvice">
+		<aop:after-returning method="afterLog" pointcut-ref="selectpointcut" returning="returnObj"/>	<!-- pointcut 결과값을 returning 인수에 넘겨주라는 뜻 -->
+	</aop:aspect>
+</aop:config>
+
 </beans>

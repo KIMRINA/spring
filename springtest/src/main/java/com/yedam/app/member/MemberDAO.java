@@ -35,7 +35,7 @@ public class MemberDAO implements DAO {
 			rs = pstmt.executeQuery(); // select 시에는 executeQuery() 쓰기
 
 			if (rs.next()) { // 단건조회라서 next()로 한건 한건마다 true 인지 false인지 확인하고 이동함
-				member = new MemberVO();
+				member = MemberVO.builder().build();
 				member.setId(rs.getString(1)); // 컬럼이 첫번째 자리라서 1을 입력한거임
 				member.setPw(rs.getString("pw"));
 				member.setGender(rs.getString("gender")); // 컬럼명에다가 별칭있으면 별칭을 넣어줘야함
@@ -69,7 +69,7 @@ public class MemberDAO implements DAO {
 			rs = pstmt.executeQuery(); // select 시에는 executeQuery() 쓰기
 
 			while (rs.next()) { // 여러건 조회라서 while를 사용. next()로 한건 한건마다 true 인지 false인지 확인하고 이동함
-				MemberVO member = new MemberVO(); // 레코드 한건을 resultVO에 담음
+				MemberVO member = MemberVO.builder().build(); // 레코드 한건을 resultVO에 담음
 				member.setId(rs.getString(1)); // 컬럼이 첫번째 자리라서 1을 입력한거임
 				member.setPw(rs.getString("pw"));
 				member.setJob(rs.getString("job")); // 컬럼명에다가 별칭있으면 별칭을 넣어줘야함
