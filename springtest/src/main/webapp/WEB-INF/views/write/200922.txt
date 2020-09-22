@@ -1,0 +1,31 @@
+AOP(관점지향 프로그래밍)
+ = 관심 분리
+	- 핵심관심
+	- 횡단(공통)
+
+1. 공통코드부분을 별도의 advice 클래스로 만듬
+2. point cut : 필터링된 조인 포인트(어드바이스가 지정된 지점)
+	※모든 서비스 메서드를 조인포인트라고 한다
+	point cut은 간단하게 얘기하면 어떤 메소드의 어떤 어드바이스를 적용할지 정의하는 것을 말함
+3. weaving
+<cop:config>
+  <aop:pointcut execution>
+  <aop:aspect ref="advice 서비스">
+     <aop:before method="">
+     <aop:before pointcut-ref="">
+
+AOP 어노테이션
+@Aspect
+@Pointcut
+@Before, After return
+
+---------------------------------------------------
+
+1. pom.xml
+	spring-jdbc : jdbcTemplate 클래스
+	common-dbcp : connection pool
+2. global.properties
+	properties 파일은 환경변수를 모아주는 용도로 쓰임
+3. context.xml
+	dataSource -> bean 등록
+	jdbcTemplate

@@ -20,19 +20,19 @@
 
 
 <aop:aspectj-autoproxy proxy-target-class="true"/> 
-
+<!-- 
 <bean id="logAdvice" class="com.yedam.app.aop.LogAdvice"></bean>
 <bean id="afterAdvice" class="com.yedam.app.aop.AfterReturningAdvice"></bean>
 
 <aop:config>
-	<aop:pointcut expression="execution(* com.yedam.app..*.*(..))" id="allpointcut"/>  <!--  (* com.yedam.app..*.select*(..)) 메소드명은 클래스명 뒤에 적기 -->
-	<aop:pointcut expression="execution(* com.yedam.app..*.select*(..))" id="selectpointcut"/>	<!-- select로 시작하는것을 pointcut으로 만듬 -->
+	<aop:pointcut expression="execution(* com.yedam.app..*.*(..))" id="allpointcut"/>  
+	<aop:pointcut expression="execution(* com.yedam.app..*.select*(..))" id="selectpointcut"/>
 	<aop:aspect ref="logAdvice">
 		<aop:before method="printLog" pointcut-ref="allpointcut"/>
 	</aop:aspect>
 	<aop:aspect ref="afterAdvice">
-		<aop:after-returning method="afterLog" pointcut-ref="selectpointcut" returning="returnObj"/>	<!-- pointcut 결과값을 returning 인수에 넘겨주라는 뜻 -->
+		<aop:after-returning method="afterLog" pointcut-ref="selectpointcut" returning="returnObj"/>	
 	</aop:aspect>
 </aop:config>
-
+-->
 </beans>

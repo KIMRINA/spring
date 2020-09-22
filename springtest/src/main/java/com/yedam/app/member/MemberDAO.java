@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.yedam.app.common.ConnectionManager;
 
-@Component		// 스프링 컨테이너가 관리하도록 빈 등록
+//@Component		// 스프링 컨테이너가 관리하도록 빈 등록
 				// singletone
 
 public class MemberDAO implements DAO {
