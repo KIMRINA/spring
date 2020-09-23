@@ -31,7 +31,7 @@
   <c:forEach items="${list}" var="member">
 
   <tr>
-    <td><a href="memberSelect.jsp">${member.id}</a></td>
+    <td><a href="memberSelect?id=${member.id}">${member.id}</a></td>
     <td>${member.getPw()}</td>
     <td>${member.getJob()}</td>
     <td>${member.getReason()}</td>

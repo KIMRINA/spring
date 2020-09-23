@@ -1,10 +1,8 @@
 package com.yedam.app.member;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 public class MemberVO {
 	private String id;
 	private String pw;

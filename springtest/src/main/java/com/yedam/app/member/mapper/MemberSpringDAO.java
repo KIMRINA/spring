@@ -26,7 +26,6 @@ public class MemberSpringDAO implements MemberDAO {
 	public int insert(MemberVO memberVO) {
 		Object[] args = {memberVO.getId(), memberVO.getPw(), memberVO.getJob(), memberVO.getReason(),
 						 memberVO.getGender(), memberVO.getMailyn(), memberVO.getHobby()};
-		template.update(INSERT_MEMBER,args);
 		return template.update(INSERT_MEMBER,args);
 	}
 	
@@ -66,7 +65,7 @@ public class MemberSpringDAO implements MemberDAO {
 
 		@Override
 		public MemberVO mapRow(ResultSet rs, int rowNum) throws SQLException {
-			MemberVO member = MemberVO.builder().build();
+			MemberVO member = new MemberVO();
 			member.setId(rs.getString("id")); // 컬럼이 첫번째 자리라서 1을 입력한거임
 			member.setPw(rs.getString("pw"));
 			member.setGender(rs.getString("gender")); // 컬럼명에다가 별칭있으면 별칭을 넣어줘야함

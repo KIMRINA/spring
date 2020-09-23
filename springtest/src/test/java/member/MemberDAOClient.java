@@ -1,7 +1,6 @@
 package member;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -14,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yedam.app.member.MemberVO;
 import com.yedam.app.member.mapper.MemberDAO;
-import com.yedam.app.member.mapper.MemberJavaDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml", "classpath:config/datasource-context.xml"})
