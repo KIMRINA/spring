@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AfterReturningAdvice {
 	
-	@Pointcut("execution(* com.yedam.app..*.select*(..))")
+	@Pointcut("execution(* com.yedam.app..*Impl.select*(..))")
 	public void selectpointcut() {}
 	
 	@AfterReturning(pointcut="LogAdvice.allpointcut()", returning="returnObj")	// 해당클래스의 포인트컷을 불러와서 사용 가능

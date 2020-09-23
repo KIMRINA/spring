@@ -45,7 +45,7 @@
 
 	<!-- Transaction AOP 설정 -->
 	<aop:config>
-		<aop:pointcut expression="execution(public * com..*(..))"
+		<aop:pointcut expression="execution(public * com..yedam.app..*Impl.*(..))"
 			id="txPointCut" />
 		<aop:advisor advice-ref="txAdvice"
 			pointcut-ref="txPointCut" />

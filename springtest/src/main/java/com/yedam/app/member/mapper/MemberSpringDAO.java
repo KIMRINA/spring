@@ -1,4 +1,4 @@
-package com.yedam.app.member;
+package com.yedam.app.member.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +10,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import com.yedam.app.member.MemberVO;
+
 @Component
-public class MemberSpringDAO implements DAO {
+public class MemberSpringDAO implements MemberDAO {
 
 	@Autowired JdbcTemplate template;
 	
@@ -55,7 +57,8 @@ public class MemberSpringDAO implements DAO {
 	}
 
 	@Override
-	public void update(MemberVO memberVO) {
+	public int update(MemberVO memberVO) {
+		return 0;
 		
 	}
 

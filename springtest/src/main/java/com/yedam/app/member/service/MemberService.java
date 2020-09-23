@@ -1,9 +1,10 @@
-package com.yedam.app.member;
+package com.yedam.app.member.service;
 
-import java.util.HashMap;
 import java.util.List;
 
-public interface DAO {
+import com.yedam.app.member.MemberVO;
+
+public interface MemberService {
 
 	// 단건 조회
 	MemberVO selectOne(MemberVO memberVO);
@@ -11,14 +12,8 @@ public interface DAO {
 	// 전체 조회
 	List<MemberVO> selectAll();
 
-	// 메일 수신 회원수
-	int getMailynCnt();
-
-	// 성별 인원수
-	List<HashMap<String, Object>> getGenderCnt();
-
 	// update
-	void update(MemberVO memberVO);
+	int update(MemberVO memberVO);
 
 	// delete
 	int delete(MemberVO memberVO);

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAdvice {
 	
-	@Pointcut("execution(* com.yedam.app..*.*(..))")
+	@Pointcut("execution(* com.yedam.app..*Impl.*(..))")
 	public void allpointcut() {}
 
 	@Before("allpointcut()")

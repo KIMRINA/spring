@@ -1,4 +1,4 @@
-package com.yedam.app.member;
+package com.yedam.app.member.mapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,11 +11,12 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.yedam.app.common.ConnectionManager;
+import com.yedam.app.member.MemberVO;
 
 //@Component		// 스프링 컨테이너가 관리하도록 빈 등록
 				// singletone
 
-public class MemberDAO implements DAO {
+public class MemberJavaDAO implements MemberDAO {
 	// 전역변수. 모든 메서드에 공통으로 사용되는 변수
 	Connection conn;
 	PreparedStatement pstmt; // PreparedStatement는 Statement와 같은 기능을 수행하지만 가독성이 좋고 더 빠르다. ?기호 사용가능
@@ -136,14 +137,15 @@ public class MemberDAO implements DAO {
 
 	// update
 	@Override
-	public void update(MemberVO memberVO) {
+	public int update(MemberVO memberVO) {
+		int r=0;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "update member set pw =? where id=?"; // 값 들어갈 자리에 ? 로 지정
 			pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
 			pstmt.setString(1, memberVO.getPw()); // ?의 첫번째 자리에 올 값 지정
 			pstmt.setString(2, memberVO.getId()); // ?의 두번째 자리에 올 값 지정
-			int r = pstmt.executeUpdate(); // 실행
+			r = pstmt.executeUpdate(); // 실행
 			System.out.println(r + " 건이 수정됨"); // 결과 처리
 
 		} catch (Exception e) {
@@ -151,6 +153,7 @@ public class MemberDAO implements DAO {
 		} finally {
 			ConnectionManager.close(null, pstmt, conn); // 연결 해제
 		}
+		return r;
 	}
 
 	

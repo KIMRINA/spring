@@ -12,15 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.yedam.app.member.DAO;
-import com.yedam.app.member.MemberDAO;
 import com.yedam.app.member.MemberVO;
+import com.yedam.app.member.mapper.MemberDAO;
+import com.yedam.app.member.mapper.MemberJavaDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml", "classpath:config/datasource-context.xml"})
 public class MemberDAOClient {
 
-		@Autowired DAO dao;
+		@Autowired MemberDAO dao;
 		
 		@Test
 		@Ignore
