@@ -27,11 +27,19 @@ public class MemberController {
 					// new MemberDAO() <-필요없이 필요한 객체가 있으면 들고와서 씀
 	MemberService memberService;
 	
-	@RequestMapping("/memberListAjax")
+	// 아작스 단건조회
+	@RequestMapping("/memberSelectOneAjax")
 	@ResponseBody
+	public MemberVO memberSelectOneAjax(MemberVO memberVO) {
+		return memberService.selectOne(memberVO);
+	}
+	
+	// 아작스 전체조회
+	@RequestMapping("/memberListAjax")
+	@ResponseBody		// json string 변환
 	public List<MemberVO> memberListAjax() {
 		// 회원조회
-		return memberService.selectAll();
+		return memberService.selectAll();		// 리턴되는 결과값을 ajax로 변환시켜줌
 	}
 	
 	@RequestMapping("/memberList")
