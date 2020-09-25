@@ -21,34 +21,11 @@ public class BoardMyBatisDAO implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getMailynCnt() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<HashMap<String, Object>> getGenderCnt() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int update(BoardVO boardVO) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public int delete(BoardVO boardVO) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public void insert(BoardVO boardVO) {

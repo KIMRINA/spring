@@ -2,6 +2,7 @@ package com.yedam.app.board.mapper;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.yedam.app.board.BoardVO;
 
@@ -11,19 +12,20 @@ public interface BoardDAO {
 	BoardVO selectOne(BoardVO boardVO);
 
 	// 전체 조회
-	List<BoardVO> selectAll();
-
-	// 메일 수신 회원수
-	int getMailynCnt();
-
-	// 성별 인원수
-	List<HashMap<String, Object>> getGenderCnt();
+	List<BoardVO> selectAll(BoardVO boardVO);
+	
+	// 삭제
+	public void deleteAll(BoardVO boardVO);
+	
+	// selectMap
+	public List<Map<String,Object>> selectMap();
+	
+	// selectCnt
+	public int selectCnt();
+	
 
 	// update
 	int update(BoardVO boardVO);
-
-	// delete
-	int delete(BoardVO boardVO);
 
 	// insert
 	public void insert(BoardVO boardVO);

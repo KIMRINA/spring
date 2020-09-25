@@ -3,23 +3,100 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.app.board.mapper.BoardDAO">
-
-	<select id="selectAll" resultType="board">
-		SELECT *
-		FROM BOARD
-		ORDER BY NO DESC
+	<resultMap type="board" id="boardMap">
+		<!-- <id property="별명" 	column="컬럼이름" /> -->
+		<id property="boardNo" 				column="NO" />
+		<result property="boardSubject" 	column="SUBJECT" />
+		<result property="contents" 		column="CONTENTS" />
+		<result property="poster" 			column="POSTER" />
+		<result property="lastpost" 		column="LASTPOST" />
+		<result property="views" 			column="VIEWS" />
+		<result property="filename" 		column="FILENAME" />
+	</resultMap>
+	
+	
+	<select id="selectMap" resultType="map">
+		SELECT NO			as "no",
+			   SUBJECT		as "subject",
+			   CONTENTS		as "contents",
+			   POSTER		as "poster",
+			   LASTPOST		as "lastpost",
+			   VIEWS		as "views",
+			   FILENAME,
+			   NAME,
+			   GENDER,
+			   ROLE
+		FROM BOARD, USERS
+		WHERE BOARD.POSTER = USERS.ID
+		ORDER BY NO
 	</select>
 	
+	<!-- cnt를 조회하면 값이 딱 하나 나오기때문에 resultType int로 한다 -->
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM BOARD
+	</select>
+	
+	
+	
+	<!-- 전체조회 -->
+	<!-- ${}로하면 따옴표 안붙이고 #{}로하면 따옴표 붙임. SELECT할때는 컬럼이 따옴표 붙여지면 안되므로 ${}하는게 좋다  -->
+	<!-- resultMap에 속성을 준 경우 resultMap에 resultMap id명 붙여주기 resultType은 바로 VO에 담아주는거-->
+	<select id="selectAll" resultType="board" parameterType="board">	<!-- 넘겨주는 파라미터가 있으면 파라미터 타입 적기(생략가능) -->
+		SELECT A.* FROM (SELECT ROWNUM RN, B.* FROM (
+		SELECT NO			board_no,
+			   SUBJECT		board_subject,
+			   CONTENTS,
+			   POSTER,
+			   LASTPOST,
+			   VIEWS,
+			   FILENAME
+		FROM BOARD
+		<where>
+		<if test="poster != null and poster != ''">
+		POSTER LIKE '%' || #{poster} || '%'
+		</if>
+		<if test="boardSubject != null and boardSubject != ''">
+		AND SUBJECT LIKE '%' || #{boardSubject} || '%'
+		</if>
+		</where>
+		ORDER BY NO DESC
+)B ) A WHERE RN BETWEEN #{first} and #{last}
+	</select>
+	
+	<!-- 게시글 등록 -->
 	<insert id="insert">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+	    SELECT NVL(MAX(NO),0)+1 FROM BOARD
+	  	</selectKey>
 		INSERT INTO BOARD(NO,
 						  SUBJECT,
 						  CONTENTS,
-						  POSTER)
+						  POSTER
+						  <if test="filename != null and filename != ''">
+						  ,FILENAME
+						  </if>
+						  )
 		VALUES(#{no},
 			   #{subject},
 			   #{contents},
-			   #{poster})
+			   #{poster}
+			   <if test="filename != null and filename != ''">
+			   ,#{filename}
+			   </if>
+			   )
 	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="deleteAll" parameterType="board">
+		DELETE FROM BOARD
+		WHERE NO IN
+			<!-- collection="" item="루프변수" open="처음적을단어" close="마지막에적을단어" separator="구분단어" -->
+			<foreach collection="nos" item="i" open="(" close=")" separator=",">	<!-- (1,2,3)의 형태로 할 수 있다 -->
+				#{i}
+			</foreach>
+	</delete>
+	
 	
 	<!-- <select id="selectOne" resultType="member" parameterType="member">
 		SELECT *
