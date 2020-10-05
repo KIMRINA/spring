@@ -3,11 +3,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html><html><head>
-<meta charset="UTF-8">
-<title>memberAll</title>
-</head>
-<body>
+
+<!-- tiles는 바디이런것들 필요없음 -->
 <h3 class="page_title">회원 전체조회</h3>
 <ul class="search">
 	<li>메일수신여부</li>

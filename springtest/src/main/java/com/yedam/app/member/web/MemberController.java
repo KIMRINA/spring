@@ -46,7 +46,7 @@ public class MemberController {
 	public String memberList(Model model, HttpServletRequest request, HttpSession session) {	// web-inf는 외부에서 접근불가해서 프로젝트에서 실행해야함
 		// 회원조회
 		model.addAttribute("list",memberService.selectAll());		// MemberDAO dao = new MemberDAO(); 가 필요없음
-		return "/member/memberAll";									// 컨트롤러가 리턴으로 와서 리턴페이지로 넘어갈거임
+		return "member/memberAll";									// 컨트롤러가 리턴으로 와서 리턴페이지로 넘어갈거임
 	}
 	
 	// 등록페이지
