@@ -1,6 +1,7 @@
 package com.yedam.app.member.service.Impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int insert(MemberVO memberVO) {
 		return memberDAO.insert(memberVO);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAllmap() {
+		return memberDAO.selectAllmap();
 	}
 
 }

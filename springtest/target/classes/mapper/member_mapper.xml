@@ -4,6 +4,12 @@
 
 <mapper namespace="com.yedam.app.member.mapper.MemberDAO">
 
+	<select id="selectAllmap" resultType="map">
+		SELECT *
+		FROM MEMBER
+		ORDER BY ID
+	</select>
+
 	<select id="selectAll" resultType="member">
 		SELECT *
 		FROM MEMBER

@@ -34,7 +34,7 @@ public class PdfView extends AbstractView {
 			// 소스 컴파일 jrxml -> jasper
 			String src = (String) model.get("filename");
 			InputStream stream = getClass().getResourceAsStream(src);
-			JasperReport jasperReport = JasperCompileManager.compileReport(stream);
+			jasperReport jasperReport = JasperCompileManager.compileReport(stream);
 
 			// pdf 생성해서 출력
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, conn);

@@ -2,10 +2,13 @@ package com.yedam.app.member.mapper;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.yedam.app.member.MemberVO;
 
 public interface MemberDAO {
+	// 조회
+	List<Map<String, Object>> selectAllmap();
 
 	// 단건 조회
 	MemberVO selectOne(MemberVO memberVO);
